@@ -1,8 +1,8 @@
 ---
 title: ARES Mini
 emoji: 🤖
-colorFrom: black
-colorTo: white
+colorFrom: blue
+colorTo: purple
 sdk: docker
 app_port: 7860
 pinned: false
