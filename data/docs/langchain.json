@@ -1,0 +1,22 @@
+{
+  "title": "LangChain",
+  "category": "LLM Application Framework",
+  "description": "LangChain is an open-source framework designed for building applications powered by large language models (LLMs). It provides tools and abstractions that help developers connect language models with external data sources, tools, APIs, and application logic.",
+  "main_purpose": "The main purpose of LangChain is to simplify the development of LLM-based applications by providing reusable components for tasks such as prompt management, model interaction, retrieval-augmented generation, agents, and tool usage.",
+  "important_concepts": {
+    "chains": "Chains allow developers to combine multiple steps together, such as retrieving information, processing data, and generating an answer with a language model.",
+    "retrieval_augmented_generation": "LangChain can be used to build RAG systems where documents are retrieved first and then provided to a language model to generate grounded answers.",
+    "agents": "Agents allow language models to decide which tools or actions to use based on the user request.",
+    "memory": "Memory components allow applications to store previous interactions and use conversation history."
+  },
+  "use_cases": [
+    "Building chatbots",
+    "Creating question-answering systems",
+    "Developing RAG applications",
+    "Connecting LLMs with databases and APIs",
+    "Building AI agents"
+  ],
+  "relationship_with_rag": "In a RAG system, LangChain can manage the workflow between document loading, text splitting, retrieval, and sending the retrieved context to a language model. However, a RAG system can also be implemented without LangChain by directly connecting retrieval and generation components.",
+  "example": "A user asks a question about a company document. LangChain can retrieve relevant information from the document collection, provide it to an LLM, and generate an answer based on that information.",
+  "summary": "LangChain is a framework that helps developers create applications around large language models by connecting models with data, tools, retrieval systems, and external services."
+}
