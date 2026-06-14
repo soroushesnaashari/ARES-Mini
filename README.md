@@ -1,4 +1,4 @@
-## ARES Mini
+# ARES Mini
 
 A lightweight Retrieval-Augmented Generation (RAG) application inspired by the ideas behind the [ARES](https://arxiv.org/abs/2311.09476) paper.
 ARES Mini demonstrates a complete RAG pipeline:
@@ -86,10 +86,10 @@ http://127.0.0.1:8000
 <br>
 
 ### Deployment
-This project is designed to run on Hugging Face Spaces using Docker.
+This project is designed to run on Hugging Face Spaces using Docker.<br>
 The API key should be added as a Space Secret instead of uploading it to GitHub.
 
 <br>
 
 ### Author
-**Mohammad Soroush Esnaashari**
+Mohammad Soroush Esnaashari
