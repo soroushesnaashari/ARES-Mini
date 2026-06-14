@@ -2,22 +2,18 @@ name: Sync to Hugging Face Space
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout GitHub repository
-        uses: actions/checkout@v4
-
-      - name: Sync to Hugging Face
-        uses: huggingface/hub-sync@v0.1.0
+      - uses: actions/checkout@v4
         with:
-          github_repo_id: ${{ github.repository }}
-          huggingface_repo_id: soroushesnaashari/ARES-Mini
-          hf_token: ${{ secrets.HF_TOKEN }}
-          repo_type: space
-          space_sdk: docker
+          fetch-depth: 0
+          lfs: true
+
+      - name: Push to Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: git push https://soroushesnaashari:$HF_TOKEN@huggingface.co/spaces/soroushesnaashari/ARES-Mini main
