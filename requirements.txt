@@ -1,7 +1,8 @@
 fastapi
-uvicorn[standard]
-pydantic
-scikit-learn
-google-genai
+uvicorn
 python-dotenv
+google-genai
+scikit-learn
 pypdf
+jinja2
+python-multipart
