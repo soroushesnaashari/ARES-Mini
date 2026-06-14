@@ -7,13 +7,13 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          lfs: true
 
       - name: Push to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push https://soroushesnaashari:$HF_TOKEN@huggingface.co/spaces/soroushesnaashari/ARES-Mini main
+        run: |
+          git remote add hf https://soroushesnaashari:$HF_TOKEN@huggingface.co/spaces/soroushesnaashari/ARES-Mini
+          git push hf main --force
