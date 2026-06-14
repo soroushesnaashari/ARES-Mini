@@ -1,7 +1,9 @@
 # ARES Mini
 
 A lightweight Retrieval-Augmented Generation (RAG) application inspired by the ideas behind the [ARES](https://arxiv.org/abs/2311.09476) paper.
+
 ARES Mini demonstrates a complete RAG pipeline:
+
 User Question  
 ↓  
 Document Retrieval  
