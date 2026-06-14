@@ -1,0 +1,22 @@
+{
+  "title": "LlamaIndex",
+  "category": "LLM Data Framework",
+  "description": "LlamaIndex is an open-source framework designed to connect large language models with external data. It helps developers build applications where LLMs can access, organize, index, and retrieve information from private or custom data sources.",
+  "main_purpose": "The main purpose of LlamaIndex is to simplify the process of creating data-aware LLM applications, especially retrieval-augmented generation systems.",
+  "important_concepts": {
+    "data_connectors": "LlamaIndex provides tools for loading data from different sources such as documents, databases, and APIs.",
+    "indexing": "It creates structured representations of data so that relevant information can be retrieved efficiently.",
+    "retrieval": "It searches indexed information to find context related to a user's question.",
+    "query_engine": "The query engine combines retrieval and language model generation to answer questions using external data."
+  },
+  "relationship_with_rag": "LlamaIndex is commonly used for building RAG applications because it focuses strongly on the data pipeline: loading documents, indexing information, retrieving relevant context, and connecting the retrieved information with an LLM.",
+  "difference_from_langchain": "LangChain is a general framework for building LLM applications with chains, tools, and agents. LlamaIndex focuses more specifically on connecting LLMs with external data and retrieval workflows.",
+  "use_cases": [
+    "Building knowledge bases",
+    "Document search systems",
+    "Question answering over private data",
+    "Enterprise RAG applications",
+    "AI assistants connected to databases"
+  ],
+  "summary": "LlamaIndex helps developers build LLM applications that can understand and retrieve information from external data sources."
+}

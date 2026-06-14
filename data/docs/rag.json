@@ -1,0 +1,30 @@
+{
+  "title": "Retrieval-Augmented Generation (RAG)",
+  "category": "Artificial Intelligence Architecture",
+  "description": "Retrieval-Augmented Generation (RAG) is a technique that improves large language model applications by combining information retrieval with text generation. Instead of relying only on the knowledge stored in the model parameters, RAG retrieves relevant information from external documents and provides that information as context to the language model.",
+  "main_process": {
+    "retrieval": "The system first receives a user question and searches a document collection to find the most relevant information.",
+    "augmentation": "The retrieved documents are added to the prompt as additional context for the language model.",
+    "generation": "The language model generates an answer using the retrieved information as a knowledge source."
+  },
+  "advantages": [
+    "Reduces hallucination by grounding answers in external sources",
+    "Allows models to use private or updated information",
+    "Makes knowledge updates easier without retraining the model",
+    "Improves question-answering systems over custom documents"
+  ],
+  "components": {
+    "document_loader": "Loads external data sources such as text files, PDFs, and JSON documents.",
+    "retriever": "Finds relevant documents using methods such as TF-IDF, embeddings, or vector similarity search.",
+    "language_model": "Generates the final natural language response using the retrieved context."
+  },
+  "use_cases": [
+    "Document question answering",
+    "Enterprise knowledge assistants",
+    "Customer support chatbots",
+    "Research assistants",
+    "Internal company search systems"
+  ],
+  "relationship_with_llms": "RAG does not replace a language model. It improves the language model by giving it access to external knowledge during the generation process.",
+  "summary": "RAG is a framework that connects retrieval systems with language models to create more accurate, grounded, and up-to-date AI applications."
+}
