@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ARES Mini</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>ARES Mini</h1>
+      <p class="subtitle">Developed by Mohammad Soroush Esnaashari</p>
+
+    <div class="card">
+      <label for="question">Question</label>
+      <input id="question" type="text" placeholder="Ask something like: What is RAG?" />
+      <button onclick="ask()">Ask</button>
+    </div>
+
+    <div class="card">
+      <h2>Answer</h2>
+      <pre id="answerBox">No answer yet.</pre>
+    </div>
+
+    <div class="card">
+      <h2>Retrieved Document</h2>
+      <pre id="docBox">No document yet.</pre>
+    </div>
+
+    <div class="card">
+      <h2>Scores</h2>
+      <pre id="scoreBox">No scores yet.</pre>
+    </div>
+  </div>
+
+  <script>
+    async function ask() {
+      const question = document.getElementById("question").value;
+
+      const chatRes = await fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question })
+      });
+
+      const chatData = await chatRes.json();
+
+      document.getElementById("answerBox").textContent = chatData.answer || "No answer";
+      document.getElementById("docBox").textContent = (chatData.retrieved_docs || []).join("\n\n");
+
+      const evalRes = await fetch("/evaluate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          question: chatData.question,
+          answer: chatData.answer,
+          context: (chatData.retrieved_docs || [""])[0]
+        })
+      });
+
+      const evalData = await evalRes.json();
+      document.getElementById("scoreBox").textContent = JSON.stringify(evalData, null, 2);
+    }
+  </script>
+</body>
+</html>
