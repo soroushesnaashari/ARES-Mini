@@ -1,3 +1,13 @@
+---
+title: ARES Mini
+emoji: 🤖
+colorFrom: black
+colorTo: white
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # ARES Mini
 
 A lightweight Retrieval-Augmented Generation (RAG) application inspired by the ideas behind the [ARES](https://arxiv.org/abs/2311.09476) paper.
