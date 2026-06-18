@@ -1,6 +1,8 @@
-from fastapi import FastAPI, HTTPException, Request
+from pathlib import Path
+
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 
 from app.rag import retrieve
@@ -10,7 +12,8 @@ from app.generator import generate_answer
 app = FastAPI(title="ARES Mini")
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+
+INDEX_HTML = Path("templates/index.html")
 
 
 class ChatRequest(BaseModel):
@@ -23,13 +26,12 @@ class EvalRequest(BaseModel):
     context: str
 
 
-@app.get("/")
-def home(request: Request):
-    return templates.TemplateResponse(
-        request=request,
-        name="index.html",
-        context={}
-    )
+@app.get("/", response_class=HTMLResponse)
+def home():
+    try:
+        return INDEX_HTML.read_text(encoding="utf-8")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/chat")
