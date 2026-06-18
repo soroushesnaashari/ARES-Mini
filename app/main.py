@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
+
 from app.rag import retrieve
 from app.eval import score_answer
 from app.generator import generate_answer
@@ -11,17 +12,25 @@ app = FastAPI(title="ARES Mini")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
+
 class ChatRequest(BaseModel):
     question: str
+
 
 class EvalRequest(BaseModel):
     question: str
     answer: str
     context: str
 
+
 @app.get("/")
 def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html",
+        context={}
+    )
+
 
 @app.post("/chat")
 def chat(data: ChatRequest):
@@ -36,6 +45,7 @@ def chat(data: ChatRequest):
         }
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
 
 @app.post("/evaluate")
 def evaluate(data: EvalRequest):
