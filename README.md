@@ -7,101 +7,50 @@ sdk: docker
 app_port: 7860
 pinned: false
 ---
-
 # ARES Mini
 
-A lightweight Retrieval-Augmented Generation (RAG) application inspired by the ideas behind the [ARES](https://arxiv.org/abs/2311.09476) paper.
-
-ARES Mini demonstrates a complete RAG pipeline:
-
-User Question  
-↓  
-Document Retrieval  
-↓  
-Context Selection  
-↓  
-LLM Generation  
-↓  
-Answer Evaluation  
+A lightweight RAG + evaluation demo that works without any external API key.
 
 <br>
 
 ### Features
-
-- Supports `.txt`, `.pdf`, and `.json` documents
 - Local document retrieval from `data/docs`
-- TF-IDF based similarity search
-- Gemini-powered answer generation
-- Basic RAG evaluation scores
+- Supports `.txt`, `.pdf`, and `.json`
+- Simple extractive answer generation
+- Basic evaluation scores
 - FastAPI backend
-- Simple web interface
-
 <br>
 
-### Project Structure
+### Setup Locally
 
-```
-ARES-Mini/
-│
-├── app/
-│   ├── main.py
-│   ├── rag.py
-│   ├── generator.py
-│   └── eval.py
-│
-├── data/
-│   └── docs/
-│
-├── templates/
-│   └── index.html
-│
-├── static/
-│   └── style.css
-│
-├── requirements.txt
-├── Dockerfile
-└── README.md
+#### 1. Clone the repository
+```bash
+git clone https://github.com/soroushesnaashari/ARES-Mini.git
+cd ARES-Mini
 ```
 
-<br>
-
-### How It Works
-The user submits a question.<br>
-The retrieval module searches the uploaded documents and finds the most relevant information.<br>
-The retrieved context is sent to a language model, which generates an answer based only on the provided information.<br>
-Finally, the evaluation module measures the answer quality.
-
-<br>
-
-### Local Setup
-
-Install dependencies:
+#### 2. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
-
-Create a `.env` file:
-```env
-GOOGLE_API_KEY=your_api_key_here
-```
-
-Run:
+#### 3. Add your documents
+Put your files inside:
 ```bash
-uvicorn app.main:app --reload --port 8000
+data/docs/
+```
+Supported formats:
+
+- `.txt`
+- `.pdf`
+- `.json`
+
+#### 4. Run the app locally
+```bash
+4. Run the app locally
 ```
 
-Open:
-```
+#### 5. Open the app
+Go to:
+```bash
 http://127.0.0.1:8000
 ```
-
-<br>
-
-### Deployment
-This project is designed to run on Hugging Face Spaces using Docker.<br>
-The API key should be added as a Space Secret instead of uploading it to GitHub.
-
-<br>
-
-### Author
-Mohammad Soroush Esnaashari
