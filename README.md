@@ -46,7 +46,7 @@ Supported formats:
 
 #### 4. Run the app locally
 ```bash
-4. Run the app locally
+uvicorn app.main:app --reload --port 8000
 ```
 
 #### 5. Open the app
