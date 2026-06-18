@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <h1>ARES Mini</h1>
-      <p class="subtitle">Developed by Mohammad Soroush Esnaashari</p>
+    <p class="subtitle">Developed by Mohammad Soroush Esnaashari</p>
 
     <div class="card">
       <label for="question">Question</label>
@@ -36,6 +36,13 @@
   <script>
     async function ask() {
       const question = document.getElementById("question").value;
+      const answerBox = document.getElementById("answerBox");
+      const docBox = document.getElementById("docBox");
+      const scoreBox = document.getElementById("scoreBox");
+
+      answerBox.textContent = "Loading...";
+      docBox.textContent = "";
+      scoreBox.textContent = "";
 
       const chatRes = await fetch("/chat", {
         method: "POST",
@@ -45,8 +52,15 @@
 
       const chatData = await chatRes.json();
 
-      document.getElementById("answerBox").textContent = chatData.answer || "No answer";
-      document.getElementById("docBox").textContent = (chatData.retrieved_docs || []).join("\n\n");
+      if (!chatRes.ok) {
+        answerBox.textContent = "Error: " + (chatData.detail || "Unknown error");
+        docBox.textContent = "";
+        scoreBox.textContent = "";
+        return;
+      }
+
+      answerBox.textContent = chatData.answer || "No answer";
+      docBox.textContent = (chatData.retrieved_docs || []).join("\n\n") || "No document";
 
       const evalRes = await fetch("/evaluate", {
         method: "POST",
@@ -59,7 +73,13 @@
       });
 
       const evalData = await evalRes.json();
-      document.getElementById("scoreBox").textContent = JSON.stringify(evalData, null, 2);
+
+      if (!evalRes.ok) {
+        scoreBox.textContent = "Error: " + (evalData.detail || "Unknown error");
+        return;
+      }
+
+      scoreBox.textContent = JSON.stringify(evalData, null, 2);
     }
   </script>
 </body>
